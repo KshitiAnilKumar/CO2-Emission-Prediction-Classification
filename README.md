@@ -2,6 +2,7 @@
 
 Predict vehicle CO2 emissions and classify vehicles into emission categories using machine learning models trained on Canadian vehicle emission data.
 
+>  **Note**: All project resources, including source code, model outputs, visualizations, experimental results, and supporting materials, are contained within the CO2-Emission-Prediction-Classification directory. Please refer to this folder for the complete project implementation and documentation.
 ---
 
 ## Overview
