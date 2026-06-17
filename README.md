@@ -28,9 +28,7 @@ https://www.kaggle.com/datasets/isaacfemiogunniyi/co2-emission-of-vehicles-in-ca
 
 ### Dataset Information
 
-- Filtered subset containing 679 vehicle records
-- Vehicle specifications and fuel consumption information
-- CO2 emissions measured in grams per kilometer (g/km)
+The dataset is derived from the Canadian Vehicle CO₂ Emissions Dataset available on Kaggle. The project was developed using a filtered subset containing 679 vehicle records, while this repository includes the complete dataset for reference and reproducibility.
 
 ### Features
 
@@ -140,23 +138,23 @@ Evaluation metrics:
 
 ### CO2 Distribution
 
-![CO2 Distribution](Images/co2_distribution.jpeg)
+![CO2 Distribution](CO2-Emission-Prediction-Classification/Images/co2_distribution.jpeg)
 
 ### Model Performance Comparison
 
-![Model Comparison](Images/model_comparison.jpeg)
+![Model Comparison](CO2-Emission-Prediction-Classification/Images/model_comparison.jpeg)
 
 ### Actual vs Predicted CO2 Emissions
 
-![Actual vs Predicted](Images/actual_vs_predicted.jpeg)
+![Actual vs Predicted](CO2-Emission-Prediction-Classification/Images/actual_vs_predicted.jpeg)
 
 ### Feature Importance
 
-![Feature Importance](Images/feature_importance.jpeg)
+![Feature Importance](CO2-Emission-Prediction-Classification/Images/feature_importance.jpeg)
 
 ### Classification Confusion Matrix
 
-![Confusion Matrix](Images/confusion_matrix.jpeg)
+![Confusion Matrix](CO2-Emission-Prediction-Classification/Images/confusion_matrix.jpeg)
 
 ---
 
@@ -169,12 +167,6 @@ Evaluation metrics:
 - Matplotlib
 - Seaborn
 - Jupyter Notebook
-
----
-
-## Repository Topics
-
-machine-learning, python, scikit-learn, regression, classification, data-science, co2-emissions, environmental-analysis, gradient-boosting, random-forest, feature-engineering, jupyter-notebook
 
 ---
 
