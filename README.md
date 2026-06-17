@@ -1,223 +1,195 @@
-<div align="center">
+# CO2 Emission Prediction & Classification
 
-# 🚗 CO₂ Emission Prediction & Classification
-
-**Predict vehicle CO₂ emissions and classify them into emission bands using machine learning.**
-
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=flat-square&logo=python)
-![Scikit-learn](https://img.shields.io/badge/scikit--learn-ML-orange?style=flat-square&logo=scikitlearn)
-![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?style=flat-square&logo=jupyter)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
-![Dataset](https://img.shields.io/badge/Dataset-Kaggle-20BEFF?style=flat-square&logo=kaggle)
-
-</div>
+Predict vehicle CO2 emissions and classify vehicles into emission categories using machine learning models trained on Canadian vehicle emission data.
 
 ---
 
-## 📌 Overview
+## Overview
 
-This project tackles CO₂ emission analysis from two angles:
+This project applies both regression and classification techniques to analyze vehicle CO2 emissions.
 
-| Task | Goal | Best Model |
-|---|---|---|
-| 🔢 **Regression** | Predict exact CO₂ value (g/km) | Gradient Boosting |
-| 🏷️ **Classification** | Assign emission band (Low / Medium / High) | Random Forest |
+Two machine learning tasks were performed:
 
-A unified prediction pipeline takes raw vehicle specs and returns both a numeric CO₂ estimate and an emission band label in a single call.
+| Task | Objective | Best Model |
+|--------|------------|------------|
+| Regression | Predict exact CO2 emission value (g/km) | Gradient Boosting Regressor |
+| Classification | Classify vehicles into emission categories | Random Forest Classifier |
+
+The project demonstrates a complete machine learning workflow including data preprocessing, feature engineering, model training, evaluation, and visualization.
 
 ---
 
-## 📊 Dataset
+## Dataset
 
-> **Source:** [Canadian Vehicle CO₂ Emissions Dataset — Kaggle](https://www.kaggle.com/datasets/debajyotipodder/co2-emission-by-vehicles)
+**Source:**  
+Canadian Vehicle CO2 Emissions Dataset (Kaggle)
 
-- Trained and evaluated on a **filtered subset of 679 vehicle records**
-- Full dataset included in the repository for reference and reproducibility
-- 12 columns covering make, model, class, engine specs, fuel type, fuel consumption, and CO₂ emissions
+https://www.kaggle.com/datasets/isaacfemiogunniyi/co2-emission-of-vehicles-in-canada
 
-### Features Used
+### Dataset Information
+
+- Filtered subset containing 679 vehicle records
+- Vehicle specifications and fuel consumption information
+- CO2 emissions measured in grams per kilometer (g/km)
+
+### Features
 
 | Feature | Description |
-|---|---|
-| `VEHICLE CLASS` | Category of vehicle (e.g., Compact, SUV) |
-| `FUEL` | Fuel type (X = Regular, Z = Premium, …) |
-| `TRANSMISSION` | Transmission type and number of gears |
-| `ENGINE_SIZE` | Engine displacement in litres |
-| `CYLINDERS` | Number of engine cylinders |
-| `FUEL_CONSUMPTION*` | Combined fuel consumption (L/100 km) |
-| `CO2_EMISSIONS` | 🎯 Regression target — CO₂ in g/km |
-| `Emission_Band` | 🎯 Classification target — Low / Medium / High |
+|----------|-------------|
+| MODEL | Vehicle model year |
+| MAKE | Manufacturer |
+| MODEL.1 | Vehicle model |
+| VEHICLE CLASS | Vehicle category |
+| ENGINE_SIZE | Engine size (L) |
+| CYLINDERS | Number of cylinders |
+| TRANSMISSION | Transmission type |
+| FUEL | Fuel type |
+| FUEL_CONSUMPTION* | Combined fuel consumption |
+| CO2_EMISSIONS | Target variable |
 
 ---
 
-## 🗂️ Project Structure
+## Project Structure
 
-```
+```text
 CO2-Emission-Prediction-Classification/
-│
+
 ├── Code/
-│   └── ML_FinalProject.ipynb               # Main Jupyter notebook
-│
+│   └── ML_FinalProject.ipynb
+
 ├── Dataset/
-│   └── CO2 Emissions_Canada.csv            # Full dataset
-│
+│   └── CO2 Emissions_Canada.csv
+
 ├── Images/
 │   ├── co2_distribution.jpeg
 │   ├── model_comparison.jpeg
 │   ├── actual_vs_predicted.jpeg
 │   ├── feature_importance.jpeg
 │   └── confusion_matrix.jpeg
-│
-├── MachineLearningFinalProject_Report.pdf  # Full project report
-├── ML_FinalProject.pdf                     # Notebook export (PDF)
+
 └── README.md
 ```
 
 ---
 
-## ⚙️ Methodology
+## Methodology
 
 ### Data Preprocessing
-- Removed duplicates and null values
-- Dropped unnamed/index columns
-- Selected relevant feature columns for ML
-- One-hot encoded categorical features (`VEHICLE CLASS`, `FUEL`, `TRANSMISSION`) via `ColumnTransformer`
 
-### 🔢 Regression — Predicting CO₂ (g/km)
+- Data cleaning and validation
+- Removal of unnecessary columns
+- Handling categorical variables using One-Hot Encoding
+- Feature scaling and transformation
+- Train-test split for model evaluation
 
-Seven models compared on **MAE**, **RMSE**, and **R²**:
+### Regression Models Evaluated
 
-| Model | Notes |
-|---|---|
-| Linear Regression | Baseline |
-| K-Nearest Neighbors | |
-| Decision Tree | |
-| AdaBoost | |
-| Bagging | |
-| Random Forest | |
-| **Gradient Boosting** ✅ | **Best — lowest RMSE** |
+- Linear Regression
+- K-Nearest Neighbors Regressor
+- Decision Tree Regressor
+- AdaBoost Regressor
+- Bagging Regressor
+- Random Forest Regressor
+- Gradient Boosting Regressor
 
-The Gradient Boosting model was wrapped in a full `sklearn` Pipeline for clean, reproducible inference.
+### Classification Models Evaluated
 
-### 🏷️ Classification — Emission Band (Low / Medium / High)
-
-Five classifiers compared by **accuracy**:
-
-| Model | Notes |
-|---|---|
-| Logistic Regression | Baseline |
-| Decision Tree | |
-| SVM (RBF kernel) | |
-| KNN (k=5) | |
-| **Random Forest** ✅ | **Best — highest accuracy** |
-
-The Random Forest classifier was also packaged into a Pipeline, with a full confusion matrix evaluated across all three emission band classes.
+- Logistic Regression
+- Decision Tree Classifier
+- Support Vector Machine (SVM)
+- K-Nearest Neighbors Classifier
+- Random Forest Classifier
 
 ---
 
-## 📈 Visualisations
+## Results
 
-<table>
-  <tr>
-    <td align="center"><b>CO₂ Distribution</b></td>
-    <td align="center"><b>Model Comparison (RMSE)</b></td>
-  </tr>
-  <tr>
-    <td><img src="Images/co2_distribution.jpeg" width="380"/></td>
-    <td><img src="Images/model_comparison.jpeg" width="380"/></td>
-  </tr>
-  <tr>
-    <td align="center"><b>Actual vs Predicted</b></td>
-    <td align="center"><b>Feature Importance</b></td>
-  </tr>
-  <tr>
-    <td><img src="Images/actual_vs_predicted.jpeg" width="380"/></td>
-    <td><img src="Images/feature_importance.jpeg" width="380"/></td>
-  </tr>
-  <tr>
-    <td align="center" colspan="2"><b>Confusion Matrix</b></td>
-  </tr>
-  <tr>
-    <td colspan="2" align="center"><img src="Images/confusion_matrix.jpeg" width="380"/></td>
-  </tr>
-</table>
+### Regression Task
+
+Best Model: Gradient Boosting Regressor
+
+Evaluation metrics:
+
+- Lowest RMSE among all tested models
+- Strong predictive performance
+- High correlation between actual and predicted CO2 values
+
+### Classification Task
+
+Best Model: Random Forest Classifier
+
+Evaluation metrics:
+
+- Highest classification accuracy
+- Strong performance across all emission categories
+- Reliable classification of low, medium, and high emission vehicles
 
 ---
 
-## 🚀 Usage
+## Key Findings
 
-### Installation
-
-```bash
-git clone https://github.com/your-username/CO2-Emission-Prediction-Classification.git
-cd CO2-Emission-Prediction-Classification
-pip install -r requirements.txt
-```
-
-Then open `Code/ML_FinalProject.ipynb` in Jupyter and update the CSV path in the data loading cell to match your local setup.
-
-### Predict CO₂ for a New Vehicle
-
-```python
-new_car = {
-    'VEHICLE CLASS': 'COMPACT',
-    'FUEL': 'X',
-    'TRANSMISSION': 'A4',
-    'ENGINE_SIZE': 1.8,
-    'CYLINDERS': 4,
-    'FUEL_CONSUMPTION*': 7.5
-}
-
-pred_co2, pred_band = predict_co2_and_band_pipeline(
-    car_dict=new_car,
-    reg_pipeline=gb_pipeline,   # Gradient Boosting
-    clf_pipeline=rf_pipeline    # Random Forest
-)
-
-print(f"Predicted CO₂:  {pred_co2:.1f} g/km")
-print(f"Predicted Band: {pred_band}")
-```
-
-### Predict for an Existing Record
-
-```python
-idx = 0  # any valid row index in df
-existing_car_df = df.loc[[idx], feature_cols]
-
-pred_co2  = gb_pipeline.predict(existing_car_df)[0]
-pred_band = rf_pipeline.predict(existing_car_df)[0]
-
-print(f"True CO₂: {df.loc[idx, 'CO2_EMISSIONS']} | Predicted: {pred_co2:.1f}")
-print(f"True Band: {df.loc[idx, 'Emission_Band']} | Predicted: {pred_band}")
-```
+- Fuel Consumption was the most influential feature affecting CO2 emissions.
+- Engine Size and Number of Cylinders also contributed to emission prediction.
+- Ensemble learning methods consistently outperformed simpler models.
+- Gradient Boosting achieved the best regression performance.
+- Random Forest produced the highest classification accuracy.
 
 ---
 
-## 🛠️ Requirements
+## Visualizations
 
-```
-pandas
-numpy
-scikit-learn
-matplotlib
-seaborn
-jupyter
-```
+### CO2 Distribution
 
-```bash
-pip install pandas numpy scikit-learn matplotlib seaborn jupyter
-```
+![CO2 Distribution](Images/co2_distribution.jpeg)
+
+### Model Performance Comparison
+
+![Model Comparison](Images/model_comparison.jpeg)
+
+### Actual vs Predicted CO2 Emissions
+
+![Actual vs Predicted](Images/actual_vs_predicted.jpeg)
+
+### Feature Importance
+
+![Feature Importance](Images/feature_importance.jpeg)
+
+### Classification Confusion Matrix
+
+![Confusion Matrix](Images/confusion_matrix.jpeg)
 
 ---
 
-## 📄 License
+## Technologies Used
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Matplotlib
+- Seaborn
+- Jupyter Notebook
 
 ---
 
-## 🙏 Acknowledgements
+## Repository Topics
 
-- Dataset sourced from the [Canadian Vehicle CO₂ Emissions Dataset](https://www.kaggle.com/datasets/debajyotipodder/co2-emission-by-vehicles) on Kaggle
-- Built with [scikit-learn](https://scikit-learn.org/), [pandas](https://pandas.pydata.org/), and [matplotlib](https://matplotlib.org/)
+machine-learning, python, scikit-learn, regression, classification, data-science, co2-emissions, environmental-analysis, gradient-boosting, random-forest, feature-engineering, jupyter-notebook
 
+---
+
+## Author
+
+Kshiti Anil Kumar
+
+GitHub:
+https://github.com/KshitiAnilKumar
+
+LinkedIn:
+https://www.linkedin.com/in/kshitianilkumar/
+
+---
+
+## License
+
+This project is shared for educational and research purposes.
