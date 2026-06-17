@@ -53,7 +53,7 @@ The dataset is derived from the Canadian Vehicle CO₂ Emissions Dataset availab
 CO2-Emission-Prediction-Classification/
 
 ├── Code/
-│   └── ML_FinalProject.ipynb
+│   └── CO2_Emission_Prediction_Classification.ipynb
 
 ├── Dataset/
 │   └── CO2 Emissions_Canada.csv
@@ -66,6 +66,9 @@ CO2-Emission-Prediction-Classification/
 │   └── confusion_matrix.jpeg
 
 └── README.md
+
+└── requirements.txt
+
 ```
 
 ---
